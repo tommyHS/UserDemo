@@ -26,7 +26,10 @@ class UserListFragment : Fragment() {
             recyclerView.adapter = UserListAdapter(UserListener { user ->
                 userViewModel.onUserClicked(user)
                 findNavController()
-                    .navigate(R.id.action_userListFragment_to_userDetailFragment)
+                    .navigate(
+                        R.id.action_userListFragment_to_userDetailFragment,
+                        UserDetailFragmentArgs(user).toBundle()
+                    )
             })
         }
         // Inflate the layout for this fragment
