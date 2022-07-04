@@ -1,11 +1,11 @@
 package com.example.userdemo.ui
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.userdemo.R
 import com.example.userdemo.databinding.FragmentUserListBinding
@@ -13,23 +13,28 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class UserListFragment : Fragment() {
-    private val viewModel: UserViewModel by activityViewModels()
+
+    private val userViewModel by viewModels<UserViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        val binding = FragmentUserListBinding.inflate(inflater)
-        // TODO: call the view model method that calls the amphibians api
-        binding.lifecycleOwner = this
-        binding.viewModel = viewModel
-        binding.recyclerView.adapter = UserListAdapter(UserListener { user ->
-            viewModel.onUserClicked(user)
-            findNavController()
-                .navigate(R.id.action_userListFragment_to_userDetailFragment)
-        })
-
+    ): View {
+        val binding = FragmentUserListBinding.inflate(inflater).apply {
+            lifecycleOwner = viewLifecycleOwner
+            viewModel = userViewModel
+            recyclerView.adapter = UserListAdapter(UserListener { user ->
+                userViewModel.onUserClicked(user)
+                findNavController()
+                    .navigate(R.id.action_userListFragment_to_userDetailFragment)
+            })
+        }
         // Inflate the layout for this fragment
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        userViewModel.getUserList()
     }
 }

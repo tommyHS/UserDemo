@@ -7,7 +7,7 @@ data class User(
     @Json(name = "avatar_url")
     val avatarUrl: String,
     @Json(name = " events_url")
-    val eventsUrl: String,
+    val eventsUrl: String?,
     @Json(name = "followers_url")
     val followersUrl: String,
     @Json(name = "following_url")
