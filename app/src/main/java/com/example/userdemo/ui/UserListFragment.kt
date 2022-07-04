@@ -9,7 +9,9 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.userdemo.R
 import com.example.userdemo.databinding.FragmentUserListBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class UserListFragment : Fragment() {
     private val viewModel: UserViewModel by activityViewModels()
 

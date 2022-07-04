@@ -1,4 +1,5 @@
 package com.example.userdemo
+
 import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -7,7 +8,7 @@ import com.example.userdemo.network.User
 import com.example.userdemo.ui.UserListAdapter
 import de.hdodenhof.circleimageview.CircleImageView
 
-class BindingAdapters{
+class BindingAdapters {
     companion object {
         @BindingAdapter("imageUrl")
         @JvmStatic
@@ -21,8 +22,10 @@ class BindingAdapters{
 
         @BindingAdapter("listData")
         @JvmStatic
-        fun bindRecyclerView(recyclerView: RecyclerView,
-                             data: List<User>?) {
+        fun bindRecyclerView(
+            recyclerView: RecyclerView,
+            data: List<User>?
+        ) {
             val adapter = recyclerView.adapter as UserListAdapter
             adapter.submitList(data)
         }
