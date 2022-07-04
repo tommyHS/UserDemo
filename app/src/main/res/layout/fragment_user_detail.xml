@@ -8,6 +8,9 @@
         <variable
             name="viewModel"
             type="com.example.userdemo.ui.UserViewModel" />
+        <variable
+            name="userDetailFrgment"
+            type="com.example.userdemo.ui.UserDetailFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -22,11 +25,12 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:background="@null"
+            android:onClick="@{() -> userDetailFrgment.activity.onBackPressed()}"
             android:src="@android:drawable/ic_menu_close_clear_cancel"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:tint="#000000"
-            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck"/>
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/user_photo"
@@ -44,21 +48,91 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="@{viewModel.user.login}"
+            android:text="@{viewModel.user.name}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/user_photo" />
+
+        <TextView
+            android:id="@+id/user_bio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@{viewModel.user.bio}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/user_name" />
 
         <View
             android:id="@+id/view"
             android:layout_width="0dp"
             android:layout_height="1dp"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="20dp"
             android:layout_marginEnd="10dp"
             android:background="#C6C6C6"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/user_name" />
+            app:layout_constraintTop_toBottomOf="@+id/user_bio" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="30dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view"
+            app:srcCompat="@android:drawable/sym_def_app_icon" />
+
+        <TextView
+            android:id="@+id/user_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="@{viewModel.user.login}"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView"
+            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintTop_toTopOf="@+id/imageView" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintStart_toStartOf="@+id/imageView"
+            app:layout_constraintTop_toBottomOf="@+id/imageView"
+            app:srcCompat="@android:drawable/ic_menu_mylocation" />
+
+        <TextView
+            android:id="@+id/user_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="@{viewModel.user.location}"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+            app:layout_constraintStart_toEndOf="@+id/imageView2"
+            app:layout_constraintTop_toTopOf="@+id/imageView2" />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintStart_toStartOf="@+id/imageView2"
+            app:layout_constraintTop_toBottomOf="@+id/imageView2"
+            app:srcCompat="@android:drawable/ic_menu_share" />
+
+        <TextView
+            android:id="@+id/user_blog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:autoLink="web"
+            android:text="@{viewModel.user.blog}"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView3"
+            app:layout_constraintStart_toEndOf="@+id/imageView3"
+            app:layout_constraintTop_toTopOf="@+id/imageView3" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

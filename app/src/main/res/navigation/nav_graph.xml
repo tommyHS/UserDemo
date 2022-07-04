@@ -15,5 +15,11 @@
     <fragment
         android:id="@+id/userDetailFragment"
         android:name="com.example.userdemo.ui.UserDetailFragment"
-        android:label="UserDetailFragment" />
+        android:label="UserDetailFragment" >
+        <action
+            android:id="@+id/action_userDetailFragment_to_userListFragment"
+            app:destination="@id/userListFragment"
+            app:popUpTo="@id/userListFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>

@@ -27,7 +27,6 @@ class UserListFragment : Fragment() {
                 .navigate(R.id.action_userListFragment_to_userDetailFragment)
         })
 
-        // Inflate the layout for this fragment
         return binding.root
     }
 }

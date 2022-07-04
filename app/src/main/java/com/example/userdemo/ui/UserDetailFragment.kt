@@ -19,8 +19,8 @@ class UserDetailFragment : Fragment() {
         val binding = FragmentUserDetailBinding.inflate(inflater)
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
+        binding.userDetailFrgment = this@UserDetailFragment
 
-        // Inflate the layout for this fragment
         return binding.root
     }
 }
