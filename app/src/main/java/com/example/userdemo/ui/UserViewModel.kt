@@ -1,17 +1,13 @@
 package com.example.userdemo.ui
 
 import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.userdemo.data.repository.Repository
 import com.example.userdemo.network.User
+import com.example.userdemo.network.UserDetail
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -19,8 +15,43 @@ import javax.inject.Inject
 class UserViewModel @Inject constructor(private val repository: Repository) : ViewModel() {
     private val _users = MutableStateFlow<List<User>>(listOf())
     val users = _users.asStateFlow()
-    private val _user = MutableLiveData<User>()
-    val user: LiveData<User> = _user
+    private val _user = MutableStateFlow(
+        UserDetail(
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            0,
+            "",
+            0,
+            "",
+            "",
+            "",
+            "",
+            "",
+            0,
+            "",
+            "",
+            "",
+            "",
+            "",
+            0,
+            0,
+            "",
+            "",
+            true,
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+        )
+    )
+    val user = _user.asStateFlow()
 
     fun getUserList() {
         viewModelScope.launch {
@@ -32,7 +63,14 @@ class UserViewModel @Inject constructor(private val repository: Repository) : Vi
         }
     }
 
+    fun getUser(username: String?) {
+        repository.getUser(username ?: "")
+            .onEach { user -> _user.update { user } }
+            .catch { e -> Log.e("Demo", "$e") }
+            .launchIn(viewModelScope)
+    }
+
     fun onUserClicked(user: User) {
-        _user.value = user
+        getUser(user.login)
     }
 }
