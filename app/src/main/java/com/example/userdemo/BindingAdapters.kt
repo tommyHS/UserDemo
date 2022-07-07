@@ -21,8 +21,9 @@ class BindingAdapters{
 
         @BindingAdapter("listData")
         @JvmStatic
-        fun bindRecyclerView(recyclerView: RecyclerView,
-                             data: List<User>?) {
+        fun bindRecyclerView(
+            recyclerView: RecyclerView,
+            data: List<User>?) {
             val adapter = recyclerView.adapter as UserListAdapter
             adapter.submitList(data)
         }

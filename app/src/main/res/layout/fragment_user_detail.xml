@@ -8,9 +8,10 @@
         <variable
             name="viewModel"
             type="com.example.userdemo.ui.UserViewModel" />
+
         <variable
-            name="userDetailFrgment"
-            type="com.example.userdemo.ui.UserDetailFragment" />
+            name="user"
+            type="com.example.userdemo.network.User" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -25,7 +26,6 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:background="@null"
-            android:onClick="@{() -> userDetailFrgment.activity.onBackPressed()}"
             android:src="@android:drawable/ic_menu_close_clear_cancel"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -34,11 +34,11 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/user_photo"
+            imageUrl="@{user.avatarUrl}"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginTop="20dp"
             android:src="@android:drawable/sym_def_app_icon"
-            app:imageUrl="@{viewModel.user.avatar_url}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ibtClose" />
@@ -90,7 +90,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:text="@{viewModel.user.login}"
+            android:text="@{user.login}"
             app:layout_constraintBottom_toBottomOf="@+id/imageView"
             app:layout_constraintStart_toEndOf="@+id/imageView"
             app:layout_constraintTop_toTopOf="@+id/imageView" />

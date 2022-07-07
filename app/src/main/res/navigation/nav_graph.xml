@@ -16,6 +16,9 @@
         android:id="@+id/userDetailFragment"
         android:name="com.example.userdemo.ui.UserDetailFragment"
         android:label="UserDetailFragment" >
+        <argument
+            android:name="user"
+            app:argType="com.example.userdemo.network.User" />
         <action
             android:id="@+id/action_userDetailFragment_to_userListFragment"
             app:destination="@id/userListFragment"

@@ -8,13 +8,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.userdemo.databinding.ListViewItemBinding
 import com.example.userdemo.network.User
 
-class UserListAdapter(val clickListener: UserListener) :
+class UserListAdapter(private val clickListener: UserListener) :
     ListAdapter<User, UserListAdapter.UserViewHolder>(DiffCallback) {
 
     class UserViewHolder(
         var binding: ListViewItemBinding
-    ) : RecyclerView.ViewHolder(binding.root){
-        fun bind(clickListener: UserListener,user: User) {
+    ) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(clickListener: UserListener, user: User) {
             binding.user = user
             binding.clickListener = clickListener
             binding.executePendingBindings()
@@ -42,7 +42,7 @@ class UserListAdapter(val clickListener: UserListener) :
 
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
         val user = getItem(position)
-        holder.bind(clickListener,user)
+        holder.bind(clickListener, user)
     }
 }
 
